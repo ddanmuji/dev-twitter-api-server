@@ -13,7 +13,7 @@ dev twitter api server
 dev server
 
 ```shell
-dev server
+yarn start:dev
 ```
 
 node version
@@ -25,7 +25,8 @@ v18.12.1
 .env
 
 ```shell
-DB_KEY=...
+MONGODB_URL=...
+PORT=...
 ```
 
 etc...
