@@ -14,6 +14,11 @@ export class UsersRepository {
 		return result;
 	}
 
+	async findUserByEmail(email: string) {
+		const result = await this.userModel.findOne({ email });
+		return result;
+	}
+
 	async createUser(userRequestDto: UserRequestDto) {
 		const result = await this.userModel.create(userRequestDto);
 		return result;

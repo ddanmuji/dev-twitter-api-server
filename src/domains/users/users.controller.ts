@@ -1,13 +1,18 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
+import { AuthService } from '../auth/auth.service';
+import { LoginRequestDto } from '../auth/dto/login.request.dto';
 import { ReadOnlyUserDto } from './dto/users.dto';
 import { UserRequestDto } from './dto/users.request.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-	constructor(private readonly usersService: UsersService) {}
+	constructor(
+		private readonly authService: AuthService,
+		private readonly usersService: UsersService
+	) {}
 
 	@ApiOperation({ summary: '내 정보 조회', tags: ['users'] })
 	@Get()
@@ -25,8 +30,8 @@ export class UsersController {
 
 	@ApiOperation({ summary: '로그인', tags: ['users'] })
 	@Post('login')
-	async login() {
-		return 'login';
+	async login(@Body() loginRequestDto: LoginRequestDto) {
+		return this.authService.login(loginRequestDto);
 	}
 
 	@ApiOperation({ summary: '로그아웃', tags: ['users'] })
