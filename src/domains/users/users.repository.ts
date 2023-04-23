@@ -10,17 +10,18 @@ export class UsersRepository {
 	constructor(@InjectModel(User.name) private readonly userModel: Model<User>) {}
 
 	async existsByEmail(email: string) {
-		const result = await this.userModel.exists({ email });
-		return result;
+		return await this.userModel.exists({ email });
 	}
 
 	async findUserByEmail(email: string) {
-		const result = await this.userModel.findOne({ email });
-		return result;
+		return await this.userModel.findOne({ email });
+	}
+
+	async findUserByIdWithoutPassword(userId: string) {
+		return await this.userModel.findById(userId).select('-password');
 	}
 
 	async createUser(userRequestDto: UserRequestDto) {
-		const result = await this.userModel.create(userRequestDto);
-		return result;
+		return await this.userModel.create(userRequestDto);
 	}
 }
