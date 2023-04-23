@@ -70,12 +70,16 @@ dev-twitter-api-server/
 dev server
 
 ```shell
+# dev server
+
 yarn start:dev
 ```
 
 node version
 
 ```shell
+# node -v
+
 v18.12.1
 ```
 
@@ -83,10 +87,13 @@ v18.12.1
 
 ```shell
 # .env.example 참고
+
 MONGODB_URL=...
+JWT_SECRET=...
+SWAGGER_USER=...
+SWAGGER_PASSWORD=...
 PORT=...
 MODE=...
-JWT_SECRET=...
 ```
 
 etc...
