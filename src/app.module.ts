@@ -5,10 +5,16 @@ import mongoose from 'mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './domains/auth/auth.module';
 import { UsersModule } from './domains/users/users.module';
 
 @Module({
-	imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGODB_URL), UsersModule],
+	imports: [
+		ConfigModule.forRoot(),
+		MongooseModule.forRoot(process.env.MONGODB_URL),
+		AuthModule,
+		UsersModule
+	],
 	controllers: [AppController],
 	providers: [AppService]
 })
