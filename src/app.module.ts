@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './domains/auth/auth.module';
+import { TweetsModule } from './domains/tweets/tweets.module';
 import { UsersModule } from './domains/users/users.module';
 
 @Module({
@@ -13,6 +14,7 @@ import { UsersModule } from './domains/users/users.module';
 		ConfigModule.forRoot(),
 		MongooseModule.forRoot(process.env.MONGODB_URL),
 		AuthModule,
+		TweetsModule,
 		UsersModule
 	],
 	controllers: [AppController],
