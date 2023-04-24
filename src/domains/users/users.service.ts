@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { Domain } from '../../shared/enums/domain.enums';
 import { UserRequestDto } from './dto/users.request.dto';
 import { UsersRepository } from './users.repository';
-import { UserReadonlyData } from './users.schema';
+import { UserReadOnlyData } from './users.schema';
 
 @Injectable()
 export class UsersService {
@@ -24,10 +24,10 @@ export class UsersService {
 			password: await bcrypt.hash(password, 10)
 		});
 
-		return newUser.readonlyData;
+		return newUser.readOnlyData;
 	}
 
-	async uploadImage(user: UserReadonlyData, file: Express.Multer.File) {
+	async uploadImage(user: UserReadOnlyData, file: Express.Multer.File) {
 		const fileName = `${Domain.USERS}/${file.filename}`;
 		const newUser = await this.usersRepository.findByIdAndUpdateImage(user.id, fileName);
 		return newUser;

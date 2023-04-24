@@ -18,7 +18,7 @@ import { LoginRequestDto } from '../auth/dto/login.request.dto';
 import { JwtAuthGuard } from '../auth/jwt/jwt.guard';
 import { ReadOnlyUserDto } from './dto/users.dto';
 import { UserRequestDto } from './dto/users.request.dto';
-import { UserReadonlyData } from './users.schema';
+import { UserReadOnlyData } from './users.schema';
 import { UsersService } from './users.service';
 
 @Controller(Domain.USERS)
@@ -31,8 +31,8 @@ export class UsersController {
 	@ApiOperation({ summary: '내 정보 조회', tags: [Domain.USERS] })
 	@UseGuards(JwtAuthGuard)
 	@Get('me')
-	getCurrentUser(@CurrentUser() user: UserReadonlyData) {
-		return Promise.resolve(user);
+	getCurrentUser(@CurrentUser() user: UserReadOnlyData) {
+		return user;
 	}
 
 	@ApiOperation({ summary: '회원가입', tags: [Domain.USERS] })
@@ -55,7 +55,7 @@ export class UsersController {
 	@Post('me/upload-image')
 	async uploadUserImg(
 		@UploadedFile() file: Express.Multer.File,
-		@CurrentUser() user: UserReadonlyData
+		@CurrentUser() user: UserReadOnlyData
 	) {
 		return this.usersService.uploadImage(user, file);
 	}

@@ -29,7 +29,7 @@ export class UsersRepository {
 		const user = await this.findUserById(userId);
 		user.avatarImgUrl = `http://localhost:8080/media/${fileName}`;
 		const newUser = await user.save();
-		return newUser.readonlyData;
+		return newUser.readOnlyData;
 	}
 
 	async createUser(userRequestDto: UserRequestDto) {

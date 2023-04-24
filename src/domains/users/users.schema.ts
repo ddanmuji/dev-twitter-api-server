@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Document, SchemaOptions } from 'mongoose';
 
-export interface UserReadonlyData {
+export interface UserReadOnlyData {
 	id: string;
 	email: string;
 	nickname: string;
@@ -38,12 +38,12 @@ export class User extends Document {
 	@IsString()
 	avatarImgUrl: string;
 
-	readonly readonlyData: UserReadonlyData;
+	readonly readOnlyData: UserReadOnlyData;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-UserSchema.virtual('readonlyData').get(function (this: User): UserReadonlyData {
+UserSchema.virtual('readOnlyData').get(function (this: User): UserReadOnlyData {
 	return {
 		id: this.id,
 		email: this.email,
