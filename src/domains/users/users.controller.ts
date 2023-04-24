@@ -10,8 +10,8 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
-import { Domain } from '../../shared/constants/domain.constants';
 import { CurrentUser } from '../../shared/decorators/user.decorators';
+import { Domain } from '../../shared/enums/domain.enums';
 import { multerOptions } from '../../shared/utils/multer.options';
 import { AuthService } from '../auth/auth.service';
 import { LoginRequestDto } from '../auth/dto/login.request.dto';

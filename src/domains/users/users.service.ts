@@ -1,10 +1,10 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
+import { Domain } from '../../shared/enums/domain.enums';
 import { UserRequestDto } from './dto/users.request.dto';
 import { UsersRepository } from './users.repository';
 import { UserReadonlyData } from './users.schema';
-import { Domain } from 'src/shared/constants/domain.constants';
 
 @Injectable()
 export class UsersService {
