@@ -3,6 +3,8 @@ import * as bcrypt from 'bcrypt';
 
 import { UserRequestDto } from './dto/users.request.dto';
 import { UsersRepository } from './users.repository';
+import { UserReadonlyData } from './users.schema';
+import { Domain } from 'src/shared/constants/domain.constants';
 
 @Injectable()
 export class UsersService {
@@ -23,5 +25,11 @@ export class UsersService {
 		});
 
 		return newUser.readonlyData;
+	}
+
+	async uploadImage(user: UserReadonlyData, file: Express.Multer.File) {
+		const fileName = `${Domain.USERS}/${file.filename}`;
+		const newUser = await this.usersRepository.findByIdAndUpdateImage(user.id, fileName);
+		return newUser;
 	}
 }

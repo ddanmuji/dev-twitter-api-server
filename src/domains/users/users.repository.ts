@@ -17,8 +17,19 @@ export class UsersRepository {
 		return await this.userModel.findOne({ email });
 	}
 
+	async findUserById(userId: string) {
+		return await this.userModel.findById(userId);
+	}
+
 	async findUserByIdWithoutPassword(userId: string) {
 		return await this.userModel.findById(userId).select('-password');
+	}
+
+	async findByIdAndUpdateImage(userId: string, fileName: string) {
+		const user = await this.findUserById(userId);
+		user.avatarImgUrl = `http://localhost:8080/media/${fileName}`;
+		const newUser = await user.save();
+		return newUser.readonlyData;
 	}
 
 	async createUser(userRequestDto: UserRequestDto) {

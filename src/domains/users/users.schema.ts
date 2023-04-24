@@ -7,6 +7,7 @@ export interface UserReadonlyData {
 	id: string;
 	email: string;
 	nickname: string;
+	avatarImgUrl: string;
 }
 
 const options: SchemaOptions = {
@@ -33,9 +34,9 @@ export class User extends Document {
 	@IsNotEmpty()
 	password: string;
 
-	@Prop()
+	@Prop({ default: 'https://avatars.githubusercontent.com/u/80776262?v=4' })
 	@IsString()
-	avatarImgSrc: string;
+	avatarImgUrl: string;
 
 	readonly readonlyData: UserReadonlyData;
 }
@@ -46,6 +47,7 @@ UserSchema.virtual('readonlyData').get(function (this: User): UserReadonlyData {
 	return {
 		id: this.id,
 		email: this.email,
-		nickname: this.nickname
+		nickname: this.nickname,
+		avatarImgUrl: this.avatarImgUrl
 	};
 });
