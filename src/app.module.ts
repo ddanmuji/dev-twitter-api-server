@@ -21,9 +21,9 @@ import { UsersModule } from './domains/users/users.module';
 	providers: [AppService]
 })
 export class AppModule implements NestModule {
-	private readonly isDev: boolean = process.env.MODE === 'dev';
+	private readonly isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
 	configure() {
-		mongoose.set('debug', this.isDev);
+		mongoose.set('debug', this.isDevelopment);
 	}
 }

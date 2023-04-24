@@ -5,6 +5,6 @@ declare namespace NodeJS {
 		SWAGGER_USER: string;
 		SWAGGER_PASSWORD: string;
 		PORT: string;
-		MODE: string;
+		NODE_ENV: 'development' | 'production';
 	}
 }
